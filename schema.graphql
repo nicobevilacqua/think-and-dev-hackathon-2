@@ -1,0 +1,11 @@
+type User {
+  id: UUID!
+  username: String!
+}
+
+type Tweet {
+  id: UUID!
+  title: String!
+  content: String!
+  owner: User! @relation(type: REFERENCES) 
+}
