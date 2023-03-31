@@ -4,6 +4,7 @@
 	"private": true,
 	"scripts": {
 		"hnode": "hardhat node",
+		"cedalio": "cedalio deploy --fresh --network hardhat --schema-name simple --schema-file schema.graphql --force && cedalio serve --schema-name simple",
 		"dev": "vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
