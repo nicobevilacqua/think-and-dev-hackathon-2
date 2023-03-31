@@ -1,8 +1,4 @@
-<script>
-  import "../app.css";
-</script>
 
-<body class="h-screen overflow-hidden flex items-center justify-center py-50" style="background: #edf2f7;">
     <div class="bg-blue-900">
         <div class="flex">
 
@@ -583,7 +579,6 @@
                 </div>
         </div>
 
-    <div/>
+        </div>
         
     </div>
-</body>
