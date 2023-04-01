@@ -48,7 +48,7 @@ npm run hnode
 3) deployear graph de cedalio y prender el engine de cedalio
 ```sh
 npm run cedalio
-``
+```
 
 4) prender sveltekit
 ```sh
