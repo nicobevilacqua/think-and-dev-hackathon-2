@@ -33,24 +33,31 @@ El objetivo de este proyecto es desarrollar una plataforma de microblogging, un 
 * Control de la privacidad y propiedad de los datos por parte del usuario.
 * Compatibilidad con soluciones off-chain para datos sensibles.
 
-## Instalacion
+## Instalacion (debe hacerse en orden)
 
 1) Instalar dependencias
 ```sh
 yarn
 ```
 
-2) correr nodo de hardhat
+2) Correr nodo de hardhat
 ```sh
 npm run hnode
 ```
 
-3) deployear graph de cedalio y prender el engine de cedalio
+3) Deploy de contractos:
+```sh
+npm run deploy-contracts
+```
+Deberia deployear un contrato en la address `0x5FbDB2315678afecb367f032d93F642f64180aa3`
+
+
+4) Deployear graph de cedalio y prender el engine de cedalio
 ```sh
 npm run cedalio
 ```
 
-4) prender sveltekit
+5) Prender Sveltekit
 ```sh
 npm run dev
 ```
