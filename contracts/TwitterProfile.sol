@@ -1,23 +1,23 @@
-// SPDX-License-Identifier: AGPL-3.0-only
-pragma solidity ^0.8.10;
+// SPDX-License-Identifier: MIT
+pragma solidity 0.8.19;
 
-import {SoulboundNft} from "./SoulboundNft.sol";
+import {SoulboundNft, ERC721} from "./SoulboundNft.sol";
 
-contract ERC721TweetAccount is SoulboundNft {
+contract TwitterProfile is SoulboundNft {
     uint256 public totalSupply;
     mapping (uint256 id => bytes32 username) public idToUsername;
     mapping (bytes32 username => uint256 id) public usernameToId;
 
     constructor(
-        string memory name,
-        string memory symbol,
+        string memory name_,
+        string memory symbol_,
         string memory _baseURI
-    ) payable ERC721(name, symbol) {
-        baseURI = _baseURI;
+    ) ERC721(name_, symbol_) {
+        //baseURI = _baseURI;
     }
 
 /*
-    function validUsername(bytes32 str) public pure returns (bytes32){
+    function validAndCleanUsername(bytes32 str) public pure returns (bytes32){
         uint256 l;
         bytes32 ret = 0x00;
 
@@ -40,28 +40,27 @@ contract ERC721TweetAccount is SoulboundNft {
         return ret;
     }
 */
-    function mint(bytes32 username) external payable {
-        // TODO validate username
-        require(!usernameToId[username], "username already taken");
+    function mint(bytes32 username) external {
+        // TODO validate username, see validAndCleanUsername
+        require(balanceOf(msg.sender) == 0, "cant have more than once");
+        require(usernameToId[username] == 0, "username already taken");
         _mint(msg.sender, totalSupply++);
         idToUsername[totalSupply] = username;
         usernameToId[username] = totalSupply;
     }
 
+    function tokenURI(uint256 id) public override view returns (string memory) {
+        if (ownerOf(id) == address(0)) revert ("DoesNotExist");
 
+        //return string(abi.encodePacked(baseURI, id));
 
-
-
-    function tokenURI(uint256 id) public view returns (string memory) {
-        if (ownerOf[id] == address(0)) revert DoesNotExist();
-
-        return string(abi.encodePacked(baseURI, id));
+        return string(abi.encodePacked("", id));
     }
 
     function supportsInterface(bytes4 interfaceId)
         public
         pure
-        override(LilOwnable, ERC721)
+        override
         returns (bool)
     {
         return

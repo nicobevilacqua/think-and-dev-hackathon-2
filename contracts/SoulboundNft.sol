@@ -1,38 +1,28 @@
-import {ERC721} from "solmate/tokens/ERC721.sol";
+// SPDX-License-Identifier: MIT
+pragma solidity 0.8.19;
+import {ERC721} from "../node_modules/solmate/src/tokens/ERC721.sol";
 
 abstract contract SoulboundNft is ERC721 {
-    function approve(address to, uint256 id) public override {
+    function approve(address, uint256) public override {
         revert("soulbound");
     }
 
-    function setApprovalForAll(address operator, bool approved)
+    function setApprovalForAll(address, bool)
         public
         override
     {
         revert("soulbound");
     }
 
-    function transferFrom(
-        address from,
-        address to,
-        uint256 id
-    ) public override {
+    function transferFrom(address,address,uint256) public override {
         revert("soulbound");
     }
 
-    function safeTransferFrom(
-        address from,
-        address to,
-        uint256 id
-    ) public override {
-        revert("soulbound");
-    }
 
     function safeTransferFrom(
-        address from,
-        address to,
-        uint256 id,
-        bytes memory data
+        address,
+        address,
+        uint256
     ) public override {
         revert("soulbound");
     }
