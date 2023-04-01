@@ -7,6 +7,7 @@ contract TwitterProfile is SoulboundNft {
     uint256 public totalSupply;
     mapping (uint256 id => bytes32 username) public idToUsername;
     mapping (bytes32 username => uint256 id) public usernameToId;
+    mapping (address user => uint256 id) public addresToId;
 
     constructor(
         string memory name_,
@@ -42,11 +43,14 @@ contract TwitterProfile is SoulboundNft {
 */
     function mint(bytes32 username) external {
         // TODO validate username, see validAndCleanUsername
-        require(balanceOf(msg.sender) == 0, "cant have more than once");
+        require(addresToId[msg.sender] == 0, "cant have more than once");
         require(usernameToId[username] == 0, "username already taken");
-        _mint(msg.sender, totalSupply++);
+        
+        uint256 newId = ++totalSupply;
+        _mint(msg.sender, newId);
         idToUsername[totalSupply] = username;
         usernameToId[username] = totalSupply;
+        addresToId[msg.sender] = totalSupply;
     }
 
     function tokenURI(uint256 id) public override view returns (string memory) {
@@ -55,6 +59,10 @@ contract TwitterProfile is SoulboundNft {
         //return string(abi.encodePacked(baseURI, id));
 
         return string(abi.encodePacked("", id));
+    }
+
+    function addressToUsername(address user) public view returns (bytes32) {
+        return idToUsername[addresToId[user]];
     }
 
     function supportsInterface(bytes4 interfaceId)
