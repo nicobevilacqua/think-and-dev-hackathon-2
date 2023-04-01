@@ -1,11 +1,18 @@
 type User {
   id: UUID!
-  username: String!
+  username: String! @unique
 }
 
 type Tweet {
   id: UUID!
+  wallet: UUID!
   title: String!
   content: String!
+  owner: User! @relation(type: REFERENCES) 
+}
+
+type Follower {
+  id: UUID!
+  wallet: UUID!
   owner: User! @relation(type: REFERENCES) 
 }
