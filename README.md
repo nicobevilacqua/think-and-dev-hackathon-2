@@ -16,24 +16,24 @@ Este proyecto presenta un sistema de microblogging descentralizado que utiliza l
 4) [Instalacion](#instalacion)
 5) [Licencia](#licencia)
 
-### Introduccion
+## Introduccion
 
 El objetivo de este proyecto es desarrollar una plataforma de microblogging, un Twitter descentralizado que ofrezca a los usuarios control sobre sus datos y garantice la seguridad y la privacidad. Al utilizar Cedalio, nos aseguramos de que los datos estén almacenados de manera descentralizada y segura, mientras que la plataforma se integra fácilmente con otras soluciones Web3.
 
-### Tecnologias usadas
+## Tecnologias usadas
 
 - Cedalio: Plataforma de almacenamiento descentralizado basada en L1 y L2 networks que utiliza GraphQL para la comunicación entre front-end y back-end.
 - ethers: Biblioteca de JavaScript para interactuar con contratos inteligentes y nodos Ethereum.
 - Svelte: Framework frontend.
 - Hardhat
 
-### Caracteristicas claves
+## Caracteristicas claves
 
 * Almacenamiento descentralizado de tweets y metadatos.
 * Control de la privacidad y propiedad de los datos por parte del usuario.
 * Compatibilidad con soluciones off-chain para datos sensibles.
 
-### Instalacion
+## Instalacion
 
 1) Instalar dependencias
 ```sh
@@ -55,7 +55,7 @@ npm run cedalio
 npm run dev
 ```
 
-### Licencia
+## Licencia
 
 Este proyecto está licenciado bajo la Licencia MIT.
 
