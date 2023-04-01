@@ -3,6 +3,34 @@
   import { setClient } from "svelte-apollo";
 	import '../app.css';
 
+  import { login, init, wallet } from "../store/Wallet2";
+
+  import { onMount } from 'svelte';
+
+onMount(async () => {
+  try {
+    await init()
+  } catch (e) {
+    console.log(e)
+  }
+})
+
+async function connect() {
+  await login()
+  await window.ethereum.enable();
+    const client = createWalletClient({
+      chain: mainnet,
+      transport: custom(window.ethereum)
+    })
+
+    const [address] = await client.getAddresses() 
+    // or: const [address] = await client.requestAddresses() 
+    const account = getAccount(address)
+console.log(account)
+alert(account)
+
+}
+
   const client = new ApolloClient({
     uri: import.meta.env.VITE_GRAPHQL_GATEWAY_BASE_URL,
     cache: new InMemoryCache(),
@@ -15,3 +43,23 @@
   <slot />
 </main>
 
+{#if !$wallet}
+  <div class="fixed top-0 left-0 w-full bg-black h-full">
+    <div class="flex flex-col items-center justify-center h-full">
+      <!-- <img src="/images/logo.svg" alt="logo" class="w-32" /> -->
+      <h1 class="text-4xl text-white font-bold mt-4">Welcome to DTweet</h1>
+      <!-- landind hero, explain user that has to connect wallet -->
+      <p class="text-white text-center mt-4">
+        To use DTweet, you need to connect your wallet.
+      </p>
+      <div class="flex flex-col items-center justify-center mt-4">
+        <button
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          on:click={connect}
+        >
+          Connect Wallet
+        </button>
+      </div>
+    </div>
+  </div>
+{/if}
