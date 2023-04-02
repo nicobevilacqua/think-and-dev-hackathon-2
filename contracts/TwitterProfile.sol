@@ -17,15 +17,14 @@ contract TwitterProfile is SoulboundNft {
         //baseURI = _baseURI;
     }
 
-/*
-    function validAndCleanUsername(bytes32 str) public pure returns (bytes32){
+    function validAndCleanUsername(bytes32 str) public pure returns (bytes32 ret){
+        bytes32 bitmask = bytes32(uint256(0xff));
+
         uint256 l;
-        bytes32 ret = 0x00;
-
-        for(uint i; i<32; i++){
-            bytes1 char = str[i];
+        
+        for(uint i = 0; i< 31; i++){
+            bytes1 char = str[31-i];
             ++l;
-
             if(
                 !(char >= 0x30 && char <= 0x39) && //9-0
                 !(char >= 0x41 && char <= 0x5A) && //A-Z
@@ -34,15 +33,17 @@ contract TwitterProfile is SoulboundNft {
             ) {
                 break;
             }
-            ret[i] = char;
+            ret = ret ^ (bytes32(char) >> 8*(31-i));
         }
         
         require(l > 4, "username too short");
         return ret;
     }
-*/
+
     function mint(bytes32 username) external {
-        // TODO validate username, see validAndCleanUsername
+        // valida y limpia el username
+        username = validAndCleanUsername(username);
+        
         require(addresToId[msg.sender] == 0, "cant have more than once");
         require(usernameToId[username] == 0, "username already taken");
         
