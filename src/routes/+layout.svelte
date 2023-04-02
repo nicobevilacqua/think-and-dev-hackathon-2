@@ -48,7 +48,6 @@ const client = new ApolloClient({
 <main class="content flex-1 text-sm flex justify-center">
   <slot />
 </main>
-
 {#if !$wallet || !$profile}
   <div class="fixed top-0 left-0 w-full bg-black h-full">
     <div class="flex flex-col items-center justify-center h-full">
@@ -58,7 +57,7 @@ const client = new ApolloClient({
       <p class="text-white text-center mt-4">
         To use DTweet, you need to connect your wallet.
       </p>
-      {#if !$profile}
+      {#if !$profile && $wallet}
           
           <div>
             <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Price</label>
