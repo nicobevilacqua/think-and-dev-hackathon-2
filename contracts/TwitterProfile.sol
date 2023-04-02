@@ -18,8 +18,6 @@ contract TwitterProfile is SoulboundNft {
     }
 
     function validAndCleanUsername(bytes32 str) public pure returns (bytes32 ret){
-        bytes32 bitmask = bytes32(uint256(0xff));
-
         uint256 l;
         
         for(uint i = 0; i< 31; i++){
@@ -41,8 +39,8 @@ contract TwitterProfile is SoulboundNft {
     }
 
     function mint(bytes32 username) external {
-        // valida y limpia el username
-        username = validAndCleanUsername(username);
+        // TODO valida y limpia el username
+        // username = validAndCleanUsername(username);
         
         require(addresToId[msg.sender] == 0, "cant have more than once");
         require(usernameToId[username] == 0, "username already taken");
