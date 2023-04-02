@@ -35,6 +35,11 @@ El objetivo de este proyecto es desarrollar una plataforma de microblogging, un 
 
 ## Instalacion (debe hacerse en orden)
 
+0) Si es la primera vez copia el `.env`, las configuracion por defecto es para trabajar desde localhost
+```sh
+cp .env.example .env
+```
+
 1) Instalar dependencias
 ```sh
 yarn
@@ -60,6 +65,11 @@ npm run cedalio
 5) Prender Sveltekit
 ```sh
 npm run dev
+```
+
+6) Fondea en tu cuenta un poco de ether usando las wallets de hardhat por defecto para poder realizar transacciones;
+```sh
+cast send 0x0000003FA6D1d52849db6E9EeC9d117FefA2e200 --value 1ether --private-key=0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80 --rpc-url http://127.0.0.1:8545
 ```
 
 ## Licencia

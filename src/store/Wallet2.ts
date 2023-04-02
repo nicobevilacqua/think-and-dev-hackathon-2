@@ -12,6 +12,7 @@ import { PUBLIC_CONTRACT_PROFILE } from '$env/static/public';
 export const contractProfile = writable(null);
 export const profile = writable(null);
 export const wallet = writable(null);
+export const uuid = writable(null);
 export const provider = writable(null);
 export const signer = writable(null);
 export const errorTx = writable(false);
@@ -19,6 +20,7 @@ export const networkDetails = writable({});
 export const wrongNetwork = writable(false);
 export const gameLoading = writable(true);
 export const fatalError = writable(false);
+
 
 let web3Modal;
 let _provider;
@@ -82,15 +84,25 @@ export async function init() {
       }
     });
   }
-  debugger;
   const _signer = await _provider.getSigner();
   const _wallet = await _signer.getAddress();
   wallet.set(_wallet);
   signer.set(_signer);
-
+  
+  const _uuid = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (c) => {
+    // tslint:disable-next-line: no-bitwise
+    const r = _wallet
+    // tslint:disable-next-line: no-bitwise
+    const v = c === "x" ? r : (r & 0x3) | 0x8;
+    return v.toString(16);
+  });
+  
+  // podria haber colisiones pero no es importante por el momento
+  uuid.set(_uuid);
 
   const abi = [
-    'function addressToUsername(address user) public view returns (bytes32)'
+    'function addressToUsername(address user) public view returns (bytes32)',
+    'function mint(bytes32 username) external'
   ]
   const _profileNft = new Contract(PUBLIC_CONTRACT_PROFILE, abi, _signer);
   contractProfile.set(_profileNft);

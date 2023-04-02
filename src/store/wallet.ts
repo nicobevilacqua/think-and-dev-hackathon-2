@@ -42,8 +42,6 @@ export async function init() {
     const windowWithEthereum = window as unknown as WindowWithEthereum;
     const { ethereum } = windowWithEthereum;
 
-    // const RPC_URL = import.meta.env.VITE_RPC_URL;
-
     const newProvider: Web3Provider | JsonRpcProvider = new Web3Provider(ethereum, "any");
     // if (RPC_URL) {
     // 	newProvider = new JsonRpcProvider(RPC_URL);

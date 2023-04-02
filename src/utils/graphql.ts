@@ -1,10 +1,11 @@
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client/core";
 import { setClient } from "svelte-apollo";
+import {PUBLIC_GRAPHQL_GATEWAY_BASE_URL} from '$env/static/public';
 
 let client;
 export function init() {
     client = new ApolloClient({
-        uri: import.meta.env.VITE_GRAPHQL_GATEWAY_BASE_URL,
+        uri: PUBLIC_GRAPHQL_GATEWAY_BASE_URL,
         cache: new InMemoryCache(),
     });
 
@@ -13,30 +14,25 @@ export function init() {
 
 export const queries = {
     FEED: gql`
-        query Books($search: String) {
-            books(search: $search) {
-                id
-                slug
-                title
-                author {
-                    name
-                }
-            }
+    query tweet{
+        allTweets {
+            id
+            content
+            wallet
         }
+    }
     `,
 };
 
+
 export const mutations = {
     NEW_TWEET: gql`
-        query Feed($search: String) {
-            tweets(search: $search) {
-                id
-                slug
-                title
-                author {
-                    name
+        mutation createTweet($content: String!, $wallet: String!) {
+            createTweet(tweet:{content: $content, wallet: $wallet}) {
+                tweet {
+                    id
                 }
-            }
-        }
+        } 
+    }  
     `,
 };

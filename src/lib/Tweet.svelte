@@ -1,5 +1,9 @@
 <script lang="ts">
-  export let tweet: any;
+  import { profile } from '../store/Wallet2';
+  export let tweet = {
+    content: ''
+  };
+
 </script>
 
 <div>
@@ -11,10 +15,10 @@
           </div>
           <div class="ml-3">
             <p class="text-base leading-6 font-medium text-white">
-              Sonali Hirave 
-              <span class="text-sm leading-5 font-medium text-gray-400 group-hover:text-gray-300 transition ease-in-out duration-150">
+              @{$profile}
+              <!--<span class="text-sm leading-5 font-medium text-gray-400 group-hover:text-gray-300 transition ease-in-out duration-150">
                   @ShonaDesign . 16 April
-                </span>
+                </span>-->
                   </p>
           </div>
         </div>
@@ -24,15 +28,20 @@
 
   <div class="pl-16">
       <p class="text-base width-auto font-medium text-white flex-shrink">
+        {tweet.content}
+        <!--
         Day 07 of the challenge <span class="text-blue-400">#100DaysOfCode</span> 
         I was wondering what I can do with <span class="text-blue-400">#tailwindcss</span>, so just started building Twitter  UI using Tailwind and so far it looks so promising. I will post my code after completion.
         [07/100]
         <span class="text-blue-400"> #WomenWhoCode #CodeNewbie</span>
+        -->
       </p>
 
+      <!--
       <div class="md:flex-shrink pr-6 pt-3">
           <img class="rounded-lg w-full h-64" src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=448&q=80" alt="Woman paying for a purchase">
-        </div>
+      </div>
+      -->
       <div class="flex">
           <div class="w-full">
               
