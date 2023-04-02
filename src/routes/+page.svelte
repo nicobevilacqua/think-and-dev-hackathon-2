@@ -78,7 +78,7 @@
                 <div class="max-w-sm rounded-lg bg-blue-800 overflow-hidden shadow-lg m-4 mr-20">
                     <div class="flex">
                         <div class="flex-1 m-2">
-                            <h2 class="px-4 py-2 text-xl w-48 font-semibold text-white">Germany trends</h2>
+                            <h2 class="px-4 py-2 text-xl w-48 font-semibold text-white">Global trends</h2>
                         </div>
                         <div class="flex-1 px-4 py-2 m-2">
                             <a href="" class=" text-2xl rounded-full text-white hover:bg-blue-800 hover:text-blue-300 float-right">
@@ -186,7 +186,7 @@
                         <div class="flex-1 ">
                             <div class="flex items-center w-48">
                                 <div>
-                                  <img class="inline-block h-10 w-auto rounded-full ml-4 mt-2" src="https://pbs.twimg.com/profile_images/1121328878142853120/e-rpjoJi_bigger.png" alt="" />
+                                    <img class="inline-block h-10 w-auto rounded-full ml-4 mt-2" src="https://api.lorem.space/image/face?hash=xoxo" alt="" />
                                 </div>
                                 <div class="ml-3 mt-3">
                                   <p class="text-base leading-6 font-medium text-white">
@@ -216,14 +216,14 @@
                         <div class="flex-1 ">
                             <div class="flex items-center w-48">
                                 <div>
-                                  <img class="inline-block h-10 w-auto rounded-full ml-4 mt-2" src="https://pbs.twimg.com/profile_images/1121328878142853120/e-rpjoJi_bigger.png" alt="" />
+                                    <img class="inline-block h-10 w-auto rounded-full ml-4 mt-2" src="https://api.lorem.space/image/face?hash=xoxo2" alt="" />
                                 </div>
                                 <div class="ml-3 mt-3">
                                   <p class="text-base leading-6 font-medium text-white">
-                                    Sonali Hirave
+                                    Kinga
                                   </p>
                                   <p class="text-sm leading-5 font-medium text-gray-400 group-hover:text-gray-300 transition ease-in-out duration-150">
-                                    @ShonaDesign
+                                    @xoxo
                                   </p>
                                 </div>
                               </div>

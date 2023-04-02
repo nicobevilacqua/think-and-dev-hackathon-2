@@ -72,7 +72,7 @@
                 <div class="max-w-sm rounded-lg bg-blue-800 overflow-hidden shadow-lg m-4 mr-20">
                     <div class="flex">
                         <div class="flex-1 m-2">
-                            <h2 class="px-4 py-2 text-xl w-48 font-semibold text-white">Germany trends</h2>
+                            <h2 class="px-4 py-2 text-xl w-48 font-semibold text-white">Global trends</h2>
                         </div>
                         <div class="flex-1 px-4 py-2 m-2">
                             <a href="" class=" text-2xl rounded-full text-white hover:bg-blue-800 hover:text-blue-300 float-right">

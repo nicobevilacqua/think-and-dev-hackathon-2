@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { profile } from '../store/Wallet2';
+  import { profile, wallet } from '../store/Wallet2';
   export let tweet = {
     content: ''
   };
@@ -11,7 +11,7 @@
       <a href="#" class="flex-shrink-0 group block">
         <div class="flex items-center">
           <div>
-            <img class="inline-block h-10 w-10 rounded-full" src="https://pbs.twimg.com/profile_images/1121328878142853120/e-rpjoJi_bigger.png" alt="" />
+            <img class="inline-block h-10 w-10 rounded-full" src={"https://api.lorem.space/image/face?hash="+$wallet} alt="" />
           </div>
           <div class="ml-3">
             <p class="text-base leading-6 font-medium text-white">
