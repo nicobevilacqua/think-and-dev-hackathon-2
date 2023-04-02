@@ -1,6 +1,7 @@
 <script lang="ts">  
   import { query } from "svelte-apollo";
   import { onMount } from 'svelte';
+  import { wallet } from '../store/Wallet2';
   
   import Tweet from '$lib/Tweet.svelte';
   import { queries } from '$utils/graphql';
@@ -16,7 +17,7 @@
     window.reloadFeed = reloadFeed;
   })
 
-  $: allTweets = [...(($feed&& $feed.data && $feed.data.allTweets) || [])].reverse();
+  $: allTweets = [...(($feed&& $feed.data && $feed.data.allTweets) || [])].reverse().filter(t => t.wallet == $wallet);
 
 </script>
 
