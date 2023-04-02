@@ -260,7 +260,7 @@
                   	</a>
            		 </div>
                 <div class="flex-2">
-                    <p class="text-sm leading-6 font-medium text-gray-600"> © 2020 Twitter, Inc.</p>
+                    <p class="text-sm leading-6 font-medium text-gray-600"> © 2020 DTwitter, Inc.</p>
                 </div>
                 </div>
         </div>

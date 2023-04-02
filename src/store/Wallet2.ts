@@ -1,9 +1,16 @@
 import { writable, get } from "svelte/store";
 
 import { Web3Provider } from "@ethersproject/providers";
+import { Contract } from "@ethersproject/contracts";
 
-const PUBLIC_CHAIN_ID = 31337;
+import { formatBytes32String, parseBytes32String} from "@ethersproject/strings";
 
+// https://kit.svelte.dev/docs/modules#$env-static-public
+import { PUBLIC_CONTRACT_PROFILE } from '$env/static/public';
+
+
+export const contractProfile = writable(null);
+export const profile = writable(null);
 export const wallet = writable(null);
 export const provider = writable(null);
 export const signer = writable(null);
@@ -13,28 +20,8 @@ export const wrongNetwork = writable(false);
 export const gameLoading = writable(true);
 export const fatalError = writable(false);
 
-export async function getGasPrice() {
-  let gasPrice = null;
-  // let maxFeePerGas = null;
-  // let maxPriorityFeePerGas = null;
-  try {
-    const _provider = await get(provider);
-    if(!_provider) return;
-    const feeData = await _provider.getFeeData();
-    gasPrice = String(feeData.gasPrice.mul(2));
-    // maxFeePerGas = String(feeData.maxFeePerGas.mul(2));
-    // maxPriorityFeePerGas = String(feeData.maxPriorityFeePerGas.mul(2));
-  } catch(err) {
-    console.log(err);
-  }
-  return gasPrice;
-}
-
-const HEXCHAIN_ID = "0x"+Number(PUBLIC_CHAIN_ID).toString(16);
-
 let web3Modal;
 let _provider;
-let providerEthcall;
 
 export async function init() {
   const providerOptions = {
@@ -42,7 +29,7 @@ export async function init() {
       package: window.WalletConnectProvider.default,
       options: {
         // Mikko's test key - don't copy as your mileage may vary
-        rpc : { 137: "https://rpc.ankr.com/polygon" },
+        rpc : { 31337: "http://localhost:8545" },
       }
     },
   };
@@ -95,11 +82,24 @@ export async function init() {
       }
     });
   }
+  debugger;
   const _signer = await _provider.getSigner();
   const _wallet = await _signer.getAddress();
   wallet.set(_wallet);
   signer.set(_signer);
-   
+
+
+  const abi = [
+    'function addressToUsername(address user) public view returns (bytes32)'
+  ]
+  const _profileNft = new Contract(PUBLIC_CONTRACT_PROFILE, abi, _signer);
+  contractProfile.set(_profileNft);
+
+  let n = await _profileNft.addressToUsername(_wallet);
+  n = (parseBytes32String(n)).trim();
+  n = n === "" ? null : n; 
+  
+  profile.set(n);
   
   const _networkDetails = await _provider.getNetwork();
   networkDetails.set(_networkDetails);
@@ -108,12 +108,12 @@ export async function init() {
 
 
 export async function login() {
-  // await gameLoading.set(true);
+  // await loading.set(true);
   try {
     await web3Modal.connect();
     // await window.ethereum.enable();
   } catch(err) {
-    // await gameLoading.set(false);
+    // await loading.set(false);
   }
   
   await init();
